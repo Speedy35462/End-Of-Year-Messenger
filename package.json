@@ -1,0 +1,26 @@
+{
+  "name": "end-of-year-messenger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Speedy35462/End-Of-Year-Messenger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Speedy35462/End-Of-Year-Messenger/issues"
+  },
+  "homepage": "https://github.com/Speedy35462/End-Of-Year-Messenger#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.100.0",
+    "express": "^5.2.1",
+    "path": "^0.12.7",
+    "postgres": "^3.4.8",
+    "socket.io": "^4.8.3"
+  }
+}

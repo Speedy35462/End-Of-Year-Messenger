@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <!-- <h1 id="greetings"></h1> -->
+    <div id="mainContainer">
+        <div class="column" id="toolbar">
+            <!-- <div id="chats-button">
+                <div id="chats-button-icon"></div>
+                <p>All Chats</p>
+            </div>
+            <div id="settings-button"></div> -->
+            <!-- <div id="settings"></div> -->
+        </div>
+        <div class="column" id="chats">
+            <div id="search-wrap">
+                <input type="text" id="search" placeholder="Search..." autocomplete="off">
+            </div>
+            <div id="chats-container">
+                <div id="no-chats">
+                    <!-- <button onclick="addFriend()">Add Friend</button> -->
+                </div>
+                <!--<div class="chat">
+                    <div class="profile-picture"></div>
+                    <div>
+                        <div class="name">Lorem Ipsum</div>
+                        <div class="lastmessage" style="display: flex; align-items: center;"><div class="typing-animation"></div><span>typing</span></div>
+                    </div>
+                </div> -->
+            </div>
+            <div id="search-result-container">
+                <h3 id="nothing-found-search">No user was found</h3>
+            </div>
+        </div>
+        <div class="column" id="chat">
+            <div id="chat-container">
+                <div id="chat-top">
+                    <div>
+                        <div class="profile-picture"></div>
+                        <div>
+                            <div class="name">Lorem Ipsum</div>
+                            <div class="lastmessage" style="display: flex; align-items: center;"><span>Dolor Sit Amet</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="chat-messages"></div>
+                <div id="type-message">
+                    <input type="text" id="message" placeholder="Message...">
+                    <button id="send-message"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

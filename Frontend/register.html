@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="registerContainer">
+        <h1>Register</h1>
+        <div>
+            <label for="name"><span class="star">*</span>Name</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <div>
+            <label for="surname">Surname</label>
+            <input type="text" name="surname" id="surname">
+        </div>
+        <div>
+            <label for="email"><span class="star">*</span>E-Mail</label>
+            <input type="email" name="email" id="email">
+        </div>
+        <div>
+            <label for="username"><span class="star">*</span>Username</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div>
+            <label for="name"><span class="star">*</span>Password</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <!-- <input type="text" placeholder="Surname..." id="surname"> -->
+        <!-- <input type="email" placeholder="Email..." id="email">
+        <input type="password" placeholder="Password..." id="password"> -->
+        <hr>
+        <button onclick="register()">Register</button>
+        <span>Already have an account? <a href="./login.html">Log In</a></span>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
