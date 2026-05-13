@@ -27,7 +27,7 @@
     margin-right: 10px;
 }
 
-#registerContainer{
+#registerForm{
     display: flex;
     flex-direction: column;
     width: 25%;
@@ -50,20 +50,20 @@
     /* gap: auto; */
 }
 
-#registerContainer > h1{
+#registerForm > h1{
     margin-bottom: 20px;
 }
 
-#registerContainer > div{
+#registerForm > div{
     width: 80%;
     margin: 5px;
 }
 
-#registerContainer label{
+#registerForm label{
     align-self:left;
 }
 
-#registerContainer input{
+#registerForm input{
     border: none;
     outline: none;
     /* border-bottom: 1px solid black;*/
@@ -75,13 +75,13 @@
     color: #000;
 }
 
-#registerContainer hr{
+#registerForm hr{
     border: 1px solid #ccc;
     width: 80%;
     margin: 10px;
 }
 
-#registerContainer button{
+#registerForm button{
     /* width: fit-content; */
     width: 80%;
     padding: 10px 0;
@@ -93,7 +93,7 @@
     transition: .1s ease-in-out;
 }
 
-#registerContainer button:active{
+#registerForm button:active{
     background-color: rgb(0, 126, 199);
 }
 
@@ -129,14 +129,15 @@
     margin-top: 25px;
     width: 100%;
     height: 40px;
-    background-image: url("image/settings.png");
-    background-size: contain;
+    background-image: url("https://cdn-icons-png.flaticon.com/512/3524/3524659.png");
+    background-size: 55%;
     background-repeat: no-repeat;
     background-position: center;
+    filter: invert(35%) sepia(60%) saturate(600%) hue-rotate(200deg);
 }
 
 #settings-button:active{
-    background-image: url("image/settings (1).png");
+    filter: invert(25%) sepia(80%) saturate(800%) hue-rotate(210deg);
 }
 
 #chats-button{
@@ -158,16 +159,17 @@
 }
 
 #chats-button:active #chats-button-icon{
-    background-image: url("image/chatting\ \(1\).png");
+    filter: invert(60%) sepia(80%) saturate(400%) hue-rotate(180deg);
 }
 
 #chats-button-icon{
-    background-image: url("./image/chatting.png");
+    background-image: url("https://cdn-icons-png.flaticon.com/512/1041/1041916.png");
     width: 100%;
     height: 40px;
-    background-size: contain;
+    background-size: 55%;
     background-position: center;
     background-repeat: no-repeat;
+    filter: invert(35%) sepia(60%) saturate(600%) hue-rotate(200deg);
 }
 
 #settings{
@@ -366,7 +368,7 @@
 }
 
 .profile-picture::after{
-    content: "M";
+    content: attr(data-letter);
     color: white;
     font-size: xx-large;
     font-weight: normal;
@@ -377,6 +379,7 @@
 }
 
 #chat{
+    /* position: relative; */
     background-color: var(--background);
 }
 
@@ -408,30 +411,49 @@
     border-top: 2px solid var(--border-color);
     display: flex;
     /* grid-template-columns: auto; */
-    padding: 20px 0;
+    padding: 20px;
     box-sizing: border-box;
-    /* gap: 12px; */
+    gap: 12px;
     /* justify-content: space-evenly; */
+    /* justify-content: center; */
     align-items: center;
 }
 
-#send-message{
+#send-message, #send-files{
     width: 40px;
     height: 40px;
     border: none;
     outline: none;
     background-image: url("image/send.png");
     background-position: center;
-    background-size: 60%; /* регулируешь размер иконки */
+    background-size: 55%;
     background-repeat: no-repeat;
     background-color: var(--accent-color);
     border-radius: 12px;
     cursor: pointer;
     justify-self: right;
+    /* filter: invert(1); */
 }
 
-#send-message:active{
+#send-message:active, #send-files:active{
     background-color: var(--accent-color-active);
+}
+
+#addFiles{
+    width: 35px;
+    height: 35px;
+    background-image: url("image/attach-file.png");
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    filter: invert(35%) sepia(60%) saturate(600%) hue-rotate(200deg);
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 #message{
@@ -443,4 +465,440 @@
     background-color: var(--sidebar);
     padding: 0 12px;
     box-sizing: border-box;
+}
+
+#chat-messages{
+    overflow: auto;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 1.5vh 1.5vw 0;
+}
+
+.message{
+    max-width: 40vw;
+    position: relative;
+    width: fit-content;
+    padding: 7.5px;
+    border-radius: 4px;
+    font-size: larger;
+    background-color: white;
+}
+
+/* .message::before{
+    content: "";
+    position: absolute;
+    width: 10px;
+    aspect-ratio: 1 / 1;
+    border: 2px solid black;
+    background-color: cornflowerblue;
+    left: 100%;
+    top: 100%;
+    transform: rotate(45deg)
+} */
+
+.message::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+
+  left: 0;
+  transform: translate(100%);
+  border-color: white transparent transparent transparent;
+}
+
+.my-message{
+    align-self: flex-end;
+    background-color: cornflowerblue !important;
+    right: 0 !important;
+}
+
+.my-message::before{
+    left: 100% !important;
+    transform: translateX(-100%) !important;
+    border-color: cornflowerblue transparent transparent transparent !important;
+}
+
+.upload-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-wrap{
+    position: absolute;
+    width: 100%;
+    max-width: 500px;
+    margin: 1.5rem auto;
+    z-index: 10;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: #fbfbfb;
+    border-radius: 12px;
+    padding: 20px;
+}
+.upload-zone {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    gap: 8px; 
+    border: 1.5px dashed #b0c4de; 
+    border-radius: 12px;
+    width: 100%; 
+    height: 200px; 
+    cursor: pointer; 
+    transition: border-color 0.2s, background 0.2s;
+    background: #fff; 
+    position: relative; 
+    box-sizing: border-box;
+}
+.upload-zone:hover, .upload-zone.drag { 
+    border-color: #2f6de0; 
+    background: #eef2f9; 
+}
+.upload-zone input[type="file"] { 
+    position: absolute; 
+    inset: 0; 
+    opacity: 0; 
+    cursor: pointer; 
+    width: 100%; 
+    height: 100%; 
+}
+.upload-img { 
+    width: 36px; 
+    height: 36px; 
+    object-fit: contain; 
+}
+.upload-label { 
+    font-size: 14px; 
+    font-weight: 500; 
+    color: #333; 
+}
+.upload-sub { 
+    font-size: 12px; 
+    color: #888; 
+}
+.upload-btn { 
+    font-size: 12px; 
+    padding: 5px 14px; 
+    border-radius: 8px; 
+    border: 1px solid #d0d8ea; 
+    background: #f4f6fb; 
+    pointer-events: none; 
+    color: #555; 
+}
+.file-list { 
+    display: flex; 
+    flex-direction: column; 
+    max-height: 400px;
+    gap: 8px; 
+    margin-top: 12px; 
+    overflow: auto;
+}
+
+.file{
+    flex-shrink: 0;
+    height: 75px;
+    display: flex;
+    gap: 20px;
+    /* justify-content: space-evenly; */
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    align-items: center;
+    /* padding: 5px 0; */
+    /* box-sizing: border-box; */
+}
+
+.file-icon{
+    width: 75px;
+    height: 100%;
+    background-color: var(--accent-color);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+    font-weight: bold;
+    color: white;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* background-image: url("https://cdn-icons-png.flaticon.com/512/2258/2258853.png"); */
+
+    padding: 20px;
+    box-sizing: border-box;
+    background-origin: content-box;
+}
+
+.image,.video,video.file-icon{
+    background-color: transparent;
+    padding: 0 !important;
+}
+
+/* .image{
+    background-image: url("image/invincible-omniman.gif");
+} */
+
+.video{
+    background-image: none !important;
+}
+
+.video video{
+    object-fit: cover;
+    /* background-image: url("image/I\ should\ do\ smth\ productive\ instead\ of\ ts\ \ --.mp4"); */
+}
+
+.zip, .music{
+    background-color: var(--accent-color);
+    padding: 20px;
+    box-sizing: border-box;
+    background-origin: content-box;
+}
+
+.zip{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/2258/2258852.png");
+}
+
+.music{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/651/651717.png");
+}
+
+.file-name,.file-size{
+    display: block;
+}
+
+.file-name{
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-size{
+    color: gray;
+}
+
+.delete-file{
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+    font-size: x-large;
+    /* aspect-ratio: 1 / 1; */
+    justify-self: flex-end;
+    margin-left: auto;
+}
+
+.delete-file:hover{
+    color: red;
+}
+
+.upload-wrap hr{
+    width: 100%;
+    border: 1px solid gray;
+    margin: 20px 0;
+}
+
+#file-message{
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+    align-items: center;
+}
+
+#cancelSendFiles{
+    font-size: large;
+    padding: 5px 14px;
+    border-radius: 8px;
+    border: 1px solid #d0d8ea;
+    background: #f4f6fb;
+    pointer-events: none;
+    color: #555;;
+}
+/* ---- FIXES & NEW STYLES ---- */
+
+/* Register/login container — was #registerForm but HTML uses #registerContainer */
+#registerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    max-width: 400px;
+    height: fit-content;
+    padding: 30px;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: rgba(0, 162, 255, .8) 0px 10px 36px 0px, rgba(0, 162, 255, .06) 0px 0px 0px 1px;
+    border-radius: 20px;
+    background: white;
+    gap: 4px;
+}
+
+#registerContainer > h1 {
+    margin-bottom: 16px;
+    color: #1a1a2e;
+}
+
+#registerContainer > div {
+    width: 80%;
+    margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#registerContainer label {
+    font-size: 13px;
+    color: #555;
+}
+
+#registerContainer input {
+    border: 1.5px solid #dde4f0;
+    outline: none;
+    width: 100%;
+    background-color: #f4f7fc;
+    height: 36px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    color: #000;
+    border-radius: 8px;
+    transition: border-color .15s;
+}
+
+#registerContainer input:focus {
+    border-color: var(--accent-color);
+}
+
+#registerContainer hr {
+    border: 1px solid #e0e8f4;
+    width: 80%;
+    margin: 12px 0;
+}
+
+#registerContainer button {
+    width: 80%;
+    padding: 10px 0;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color .1s;
+}
+
+#registerContainer button:hover { background-color: var(--accent-color-active); }
+#registerContainer button:active { background-color: var(--accent-color-active); }
+
+#registerContainer > span {
+    font-size: 13px;
+    color: #666;
+}
+
+#registerContainer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+#registerContainer a:hover { text-decoration: underline; }
+
+/* Upload overlay buttons */
+#cancelSendFiles {
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1.5px solid #d0d8ea;
+    background: #f4f6fb;
+    color: #555;
+    cursor: pointer;
+    transition: background .1s;
+}
+
+#cancelSendFiles:hover { background: #e5ebf5; }
+
+#sendFilesBtn {
+    font-size: 14px;
+    padding: 8px 24px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent-color);
+    color: white;
+    cursor: pointer;
+    transition: background .1s;
+}
+
+#sendFilesBtn:hover { background: var(--accent-color-active); }
+#sendFilesBtn:disabled { opacity: .6; cursor: not-allowed; }
+
+/* Message media */
+.msg-image {
+    max-width: 260px;
+    max-height: 260px;
+    border-radius: 8px;
+    display: block;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.msg-video {
+    max-width: 280px;
+    border-radius: 8px;
+    display: block;
+}
+
+.msg-file {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: rgba(0,0,0,.06);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.my-message .msg-file { background: rgba(255,255,255,.2); }
+
+.msg-file-icon { font-size: 20px; }
+
+.msg-file-name {
+    font-size: 13px;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* No chats placeholder */
+#no-chats p {
+    padding: 20px;
+    color: #999;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* Message bubble polish */
+.message {
+    border-radius: 12px 12px 12px 2px;
+    padding: 10px 12px;
+}
+
+.my-message {
+    border-radius: 12px 12px 2px 12px !important;
 }

@@ -3,58 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Messenger</title>
     <link rel="stylesheet" href="styles.css">
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    <!-- <h1 id="greetings"></h1> -->
     <div id="mainContainer">
-        <div class="column" id="toolbar">
-            <!-- <div id="chats-button">
-                <div id="chats-button-icon"></div>
-                <p>All Chats</p>
-            </div>
-            <div id="settings-button"></div> -->
-            <!-- <div id="settings"></div> -->
-        </div>
+        <div class="column" id="toolbar"></div>
+
         <div class="column" id="chats">
             <div id="search-wrap">
                 <input type="text" id="search" placeholder="Search..." autocomplete="off">
             </div>
             <div id="chats-container">
-                <div id="no-chats">
-                    <!-- <button onclick="addFriend()">Add Friend</button> -->
-                </div>
-                <!--<div class="chat">
-                    <div class="profile-picture"></div>
-                    <div>
-                        <div class="name">Lorem Ipsum</div>
-                        <div class="lastmessage" style="display: flex; align-items: center;"><div class="typing-animation"></div><span>typing</span></div>
-                    </div>
-                </div> -->
+                <div id="no-chats"></div>
             </div>
             <div id="search-result-container">
                 <h3 id="nothing-found-search">No user was found</h3>
             </div>
         </div>
+
         <div class="column" id="chat">
-            <div id="chat-container">
+
+            <!-- File upload overlay -->
+            <div class="upload-overlay" style="display:none;">
+                <div class="upload-wrap">
+                    <div class="upload-zone" id="zone">
+                        <input type="file" id="fileInput" multiple />
+                        <img class="upload-img" src="https://cdn-icons-png.flaticon.com/512/4503/4503941.png"
+                             style="width:56px;height:56px;opacity:0.6;" />
+                        <span class="upload-label">Drop files here</span>
+                        <span class="upload-sub">or</span>
+                        <span class="upload-btn">Browse files</span>
+                    </div>
+                    <div class="file-list" id="fileList"></div>
+                    <hr>
+                    <div id="file-message">
+                        <button id="cancelSendFiles" onclick="openAddFilesMenu()">Cancel</button>
+                        <button id="sendFilesBtn" onclick="send_files(event)">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat area -->
+            <div id="chat-container" style="display:none;">
                 <div id="chat-top">
                     <div>
                         <div class="profile-picture"></div>
                         <div>
-                            <div class="name">Lorem Ipsum</div>
-                            <div class="lastmessage" style="display: flex; align-items: center;"><span>Dolor Sit Amet</span></div>
+                            <div class="name"></div>
+                            <div class="lastmessage" style="display:flex;align-items:center;"><span></span></div>
                         </div>
                     </div>
                 </div>
                 <div id="chat-messages"></div>
-                <div id="type-message">
-                    <input type="text" id="message" placeholder="Message...">
-                    <button id="send-message"></button>
-                </div>
+                <form id="type-message" onsubmit="send_message(event)">
+                    <button id="addFiles" type="button" onclick="openAddFilesMenu()"></button>
+                    <input type="text" id="message" placeholder="Message..." autocomplete="off">
+                    <button type="submit" id="send-message"></button>
+                </form>
             </div>
+
         </div>
     </div>
     <script src="main.js"></script>
